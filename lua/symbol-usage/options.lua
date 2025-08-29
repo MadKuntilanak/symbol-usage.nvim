@@ -105,7 +105,7 @@ end
 ---@param bufnr integer Buffer id
 ---@return UserOpts
 function S.get_ft_or_default(bufnr)
-  local ft = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+  local ft = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
 
   return vim.tbl_deep_extend('force', S.opts, S.opts.filetypes[ft] or {})
 end

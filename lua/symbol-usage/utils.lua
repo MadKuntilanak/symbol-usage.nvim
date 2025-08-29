@@ -4,7 +4,7 @@ M.NS = vim.api.nvim_create_namespace('__symbol__')
 M.GROUP = vim.api.nvim_create_augroup('__symbol__', { clear = true })
 M.NESTED_GROUP = vim.api.nvim_create_augroup('__symbol_nested__', { clear = true })
 
-M.is_list = vim.fn.has('nvim-0.10') == 1 and vim.islist or vim.tbl_islist
+M.is_list = vim.islist
 
 ---Why? See `:h deprecated-0.11`
 ---@param client vim.lsp.Client

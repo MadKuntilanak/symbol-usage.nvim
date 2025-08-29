@@ -60,14 +60,7 @@ end
 ---Attach workers for buffer
 ---@param bufnr integer Buffer id
 function M.attach_buffer(bufnr)
-  local clients = {}
-  if vim.fn.has('nvim-0.10') == 1 then
-    clients = vim.lsp.get_clients({ bufnr = bufnr, method = 'textDocument/documentSymbol' })
-  else
-    clients = vim.tbl_filter(function(c)
-      return u.support_method(c, 'documentSymbol')
-    end, vim.lsp.get_active_clients({ bufnr = bufnr }))
-  end
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, method = 'textDocument/documentSymbol' })
 
   if vim.tbl_isempty(clients) then
     return

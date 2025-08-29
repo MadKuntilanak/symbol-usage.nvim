@@ -102,7 +102,9 @@ function W:request_symbols()
 
   local params = { textDocument = vim.lsp.util.make_text_document_params() }
   log.trace('Requesting document symbols for buffer: %d', self.bufnr)
-  u.call_client_method(self.client, 'request', 'textDocument/documentSymbol', params, handler, self.bufnr)
+  if vim.api.nvim_buf_is_valid(self.bufnr) then
+    u.call_client_method(self.client, 'request', 'textDocument/documentSymbol', params, handler, self.bufnr)
+  end
 end
 
 ---Delete outdated symbols and their marks
